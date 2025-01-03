@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        * {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%; /* Full height of the page */
+            display: flex;
+            justify-content: center; /* Horizontally center the child */
+            align-items: center; /* Vertically center the child */
+            background-color: white;
+        }
+        .title {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid black;
+            width: 300px;
+            padding: 20px;
+            background-color: lightblue;
+            font-size: 15px;
+            box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .title h1 {
+            background-color: lightblue;
+            margin-bottom: 20px;
+        }
+        .title button {
+            height: 33px;
+            width: 66px;
+            border-radius: 7px;
+        }
+        .title button:hover {
+            height: 33px;
+            width: 66px;
+            border-radius: 7px;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+        }
+        .title input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        .title input:hover {
+            border: 1.5px solid black;
+            box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>Register Here</h1>
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+        <button id="submitButton" type="button">Submit</button>
+        <p id="message" class="message"></p>
+    </div>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function () {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+            const message = document.getElementById('message');
+
+            let errorMessage = '';
+
+            // Validate each field individually
+            if (!name) {
+                errorMessage = 'Please enter your name.';
+            } else if (!email) {
+                errorMessage = 'Please enter your email.';
+            } else if (!password) {
+                errorMessage = 'Please enter your password.';
+            } else if (!confirmPassword) {
+                errorMessage = 'Please confirm your password.';
+            } else if (password !== confirmPassword) {
+                errorMessage = 'Your password and confirm password are different';
+            }
+
+            // Show appropriate message
+            if (errorMessage) {
+                message.style.color = 'red';
+                message.style.backgroundColor = 'lightblue';
+                message.textContent = errorMessage;
+            } else {
+                message.style.color = 'green';
+                message.style.backgroundColor = 'lightblue';
+                message.textContent = 'Registered successfully.';
+            }
+        });
+    </script>
+</body>
+</html>
